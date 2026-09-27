@@ -2,6 +2,16 @@
 
 Интерактивный учебный симулятор первого рабочего дня Manual QA. Пользователь проходит карточный сценарий, анализирует требования, исследует дефекты, работает с учебными DevTools, API и SQL, оформляет баг-репорт и принимает решение о релизе.
 
+[**▶ Попробовать онлайн**](https://pervyi-den-qa.staverviktor17.chatgpt.site)
+
+## Как выглядит симулятор
+
+| Старт | Учебное задание | Результат |
+|---|---|---|
+| ![Стартовый экран](docs/screenshots/start.jpg) | ![Проверка расчёта](docs/screenshots/task.jpg) | ![Итог прохождения](docs/screenshots/result.jpg) |
+
+Прохождение занимает около 30–40 минут. Решения пользователя влияют на итоговую оценку по требованиям, исследованию, API и SQL, а также коммуникации.
+
 ## Публичная версия
 
 https://pervyi-den-qa.staverviktor17.chatgpt.site
@@ -28,8 +38,12 @@ python3 -m http.server 8000 --directory dist
 ## Проверки
 
 ```bash
+npm install
+npx playwright install chromium
 npm test
 ```
+
+`npm test` запускает структурный smoke-тест и полный E2E-сценарий в Chromium. Те же проверки автоматически выполняются в GitHub Actions при каждом push и pull request.
 
 Процесс разработки и обязательные контрольные точки описаны в [docs/DEVELOPMENT_PROCESS.md](docs/DEVELOPMENT_PROCESS.md).
 

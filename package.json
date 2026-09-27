@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "node tests/smoke.cjs"
+    "test": "npm run test:smoke && npm run test:e2e",
+    "test:smoke": "node tests/smoke.cjs",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
   }
 }
-
