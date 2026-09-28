@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 
 const html = fs.readFileSync('dist/index.html', 'utf8');
+const concept = fs.readFileSync('dist/concept.html', 'utf8');
 const required = [
   'Сборка готова к тестированию',
   'Проверка настройки NEW10',
@@ -33,3 +34,20 @@ if (stepMatches.length < 25) {
 }
 
 console.log(`Smoke OK: методические исправления найдены, экранов ${stepMatches.length + 1}`);
+
+const conceptRequired = [
+  'Рабочий стол QA',
+  'SP-214',
+  'Командный чат',
+  'data-tool="devtools"',
+  'data-tool="sql"',
+  '@media(max-width:560px)',
+  'overflow:hidden;text-overflow:ellipsis'
+];
+for (const marker of conceptRequired) {
+  if (!concept.includes(marker)) throw new Error(`В прототипе отсутствует: ${marker}`);
+}
+const conceptScript = concept.match(/<script>([\s\S]*)<\/script>/);
+if (!conceptScript) throw new Error('Не найден JavaScript дизайн-прототипа');
+new vm.Script(conceptScript[1]);
+console.log('Concept smoke OK: рабочий стол и мобильная адаптация найдены');

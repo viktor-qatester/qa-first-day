@@ -41,3 +41,20 @@ test('пользователь проходит углублённый сцен�
   await expect(page.getByText('100%', { exact: true })).toBeVisible();
 });
 
+test('рабочий стол открывает задачу и следующий инструмент на мобильной ширине', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/concept.html');
+
+  await expect(page.getByRole('heading', { name: /Доброе утро/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /ShopPoint/ })).toBeDisabled();
+  await page.getByRole('button', { name: 'Принять задачу' }).click();
+  await expect(page.getByText('В работе', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Открыть требования' }).click();
+  await expect(page.getByRole('heading', { name: 'Промокод NEW10' })).toBeVisible();
+  await page.getByRole('button', { name: /Зафиксировать вопрос/ }).click();
+
+  await expect(page.getByRole('button', { name: /ShopPoint/ })).toBeEnabled();
+  await expect(page.getByText('Новый клиент — без завершённых заказов. Можно проверять.')).toBeVisible();
+  const hasHorizontalScroll = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(hasHorizontalScroll).toBe(false);
+});
