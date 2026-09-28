@@ -1,30 +1,35 @@
 const { test, expect } = require('@playwright/test');
 
-test('пользователь проходит основной сценарий и получает 100%', async ({ page }) => {
+test('пользователь проходит углублённый сценарий и получает 100%', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Начать', exact: true }).click();
 
   await page.getByLabel('Твоё имя').fill('Тестировщик');
   await page.getByRole('button', { name: 'Начать рабочий день' }).click();
-  await page.getByRole('button', { name: 'Открыть требования' }).click();
-  await page.getByRole('button', { name: 'Уточню критерий у менеджера' }).click();
-  await page.getByRole('button', { name: 'Составить проверки' }).click();
-  await page.getByRole('button', { name: 'Главный путь: товар → корзина → промокод → заказ' }).click();
-  await page.getByRole('button', { name: /Да\. Правильный итог/ }).click();
-  await page.getByRole('button', { name: 'Оформить заказ и продолжить' }).click();
-  await page.getByRole('button', { name: 'Открою Network и проверю запросы' }).click();
-  await page.getByRole('button', { name: 'Проверить данные через SQL' }).click();
+  await page.getByRole('button', { name: 'Открыть задачу SP-214' }).click();
+  await page.getByRole('button', { name: /Зафиксирую вопрос/ }).click();
+  await page.getByRole('button', { name: 'Подготовить чек-лист' }).click();
+  await page.getByRole('button', { name: /Проверю правило нового клиента/ }).click();
+  await page.getByRole('button', { name: /Чтобы отделить ошибку настройки/ }).click();
+  await page.getByRole('button', { name: /Расчёт неверен/ }).click();
+  await page.getByRole('button', { name: 'Перейти к оформлению заказа' }).click();
+  await page.getByRole('button', { name: /Открою Network и только потом/ }).click();
+  await page.getByRole('button', { name: /Проверю количество POST-запросов/ }).click();
+  await page.getByRole('button', { name: 'Проверить бизнес-эффект через SQL' }).click();
   await page.getByRole('button', { name: 'Выполнить запрос' }).click();
-  await page.getByRole('button', { name: 'Перейти к API' }).click();
-  await page.getByRole('button', { name: '400 Bad Request' }).click();
+  await page.getByRole('button', { name: 'Открыть Swagger' }).click();
+  await page.getByRole('button', { name: 'Сравнить фактический ответ' }).click();
+  await page.getByRole('button', { name: /контракт ожидает 422/ }).click();
 
-  await page.locator('#rTitle').fill('Создаются два заказа при двойном нажатии');
-  await page.locator('#rActual').fill('Отправлены два POST-запроса и созданы две записи');
-  await page.locator('#rExpected').fill('Создаётся только один заказ и одна запись');
+  await page.locator('#rTitle').fill('Создаются два заказа при двух быстрых нажатиях');
+  await page.locator('#rActual').fill('Ушли два POST-запроса и созданы заказы 1042 и 1043');
+  await page.locator('#rExpected').fill('Одно пользовательское намерение создаёт только один заказ');
   await page.getByRole('button', { name: 'Создать дефект' }).click();
-  await page.getByRole('button', { name: 'Приложу два запроса, две записи БД и точные шаги' }).click();
-  await page.getByRole('button', { name: 'Перейти к решению о релизе' }).click();
-  await page.getByRole('button', { name: 'Отложить решение до исправления, ретеста и короткого регресса' }).click();
+  await page.getByRole('button', { name: /Сначала сравню его шаги/ }).click();
+  await page.getByRole('button', { name: 'Получить исправленную сборку' }).click();
+  await page.getByRole('button', { name: /Ретест пройден/ }).click();
+  await page.getByRole('button', { name: /Один клик, быстрый двойной клик/ }).click();
+  await page.getByRole('button', { name: /Сообщить факты/ }).click();
 
   await expect(page.getByText('100%', { exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Уверенный старт' })).toBeVisible();
@@ -35,3 +40,4 @@ test('пользователь проходит основной сценари�
   await page.getByRole('button', { name: 'Продолжить прохождение' }).click();
   await expect(page.getByText('100%', { exact: true })).toBeVisible();
 });
+
