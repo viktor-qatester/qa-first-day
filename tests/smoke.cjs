@@ -41,6 +41,8 @@ const conceptRequired = [
   'Командный чат',
   'data-tool="devtools"',
   'data-tool="sql"',
+  'type="checkbox" name="plan"',
+  'prepare.disabled=!complete',
   '@media(max-width:560px)',
   'overflow:hidden;text-overflow:ellipsis'
 ];
@@ -51,3 +53,8 @@ const conceptScript = concept.match(/<script>([\s\S]*)<\/script>/);
 if (!conceptScript) throw new Error('Не найден JavaScript дизайн-прототипа');
 new vm.Script(conceptScript[1]);
 console.log('Concept smoke OK: рабочий стол и мобильная адаптация найдены');
+
+for (const validationMarker of ['validTitle', 'validActual', 'validExpected', 'Проверь содержание']) {
+  if (!html.includes(validationMarker)) throw new Error(`Нет содержательной проверки баг-репорта: ${validationMarker}`);
+}
+console.log('Report validation smoke OK: бессмысленный текст не проходит только по длине');

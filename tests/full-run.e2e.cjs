@@ -21,6 +21,13 @@ test('пользователь проходит углублённый сцен�
   await page.getByRole('button', { name: 'Сравнить фактический ответ' }).click();
   await page.getByRole('button', { name: /контракт ожидает 422/ }).click();
 
+  await page.locator('#rTitle').fill('пр ос пр ос пр ос');
+  await page.locator('#rActual').fill('аааа бббб вввв гггг дддд ееее');
+  await page.locator('#rExpected').fill('фффф жжжж зззз ииии кккк');
+  await page.getByRole('button', { name: 'Создать дефект' }).click();
+  await expect(page.getByText(/Проверь содержание/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Оформи главный дефект' })).toBeVisible();
+
   await page.locator('#rTitle').fill('Создаются два заказа при двух быстрых нажатиях');
   await page.locator('#rActual').fill('Ушли два POST-запроса и созданы заказы 1042 и 1043');
   await page.locator('#rExpected').fill('Одно пользовательское намерение создаёт только один заказ');
@@ -51,6 +58,11 @@ test('рабочий стол открывает задачу и следующ�
   await expect(page.getByText('В работе', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Открыть требования' }).click();
   await expect(page.getByRole('heading', { name: 'Промокод NEW10' })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Зафиксировать вопрос/ })).toBeDisabled();
+  await page.getByLabel('Уточнить критерий нового клиента').check();
+  await page.getByLabel('Проверить настройку NEW10').check();
+  await page.getByLabel('Сверить расчёт корзины').check();
+  await expect(page.getByRole('button', { name: /Зафиксировать вопрос/ })).toBeEnabled();
   await page.getByRole('button', { name: /Зафиксировать вопрос/ }).click();
 
   await expect(page.getByRole('button', { name: /ShopPoint/ })).toBeEnabled();
