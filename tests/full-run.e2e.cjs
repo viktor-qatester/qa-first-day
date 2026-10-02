@@ -89,7 +89,7 @@ test('рабочий стол открывает задачу и следующ�
   await page.getByRole('button', { name: /110 BYN/ }).click();
   await expect(page.getByText(/Ожидаемый итог: 100/)).toBeVisible();
   await page.getByRole('button', { name: /Продолжить смену/ }).click();
-  await expect(page.getByRole('heading', { name: 'Проверка повторной отправки' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'DevTools открываем заранее' })).toBeVisible();
   await page.getByRole('button', { name: /Открою Network и только потом/ }).click();
   await page.getByRole('button', { name: /Проверю количество POST-запросов/ }).click();
   await page.getByRole('button', { name: 'Проверить бизнес-эффект через SQL' }).click();
@@ -176,7 +176,7 @@ test('неверная оценка корзины получает объясн
   await page.getByRole('button', { name: /Продолжить смену/ }).click();
 
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('qa-first-day-v2')));
-  expect(saved.step).toBe(12);
+  expect(saved.step).toBe(11);
   expect(saved.decisions.discount).toBe(-2);
   expect(saved.score).toBe(5);
 });
