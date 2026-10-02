@@ -68,7 +68,7 @@ test('рабочий стол открывает задачу и следующ�
   await page.getByRole('button', { name: 'Открыть требования' }).click();
   await expect(page.getByRole('heading', { name: 'Промокод NEW10' })).toBeVisible();
   const prepare = page.getByRole('button', { name: /Зафиксировать правило/ });
-  await expect(prepare).toHaveAttribute('aria-disabled', 'true');
+  await expect(prepare).not.toHaveAttribute('disabled');
   await expect(prepare).toBeEnabled();
   await page.getByLabel('Уточнить критерий нового клиента').check();
   await page.getByLabel('Проверить настройку NEW10').check();
@@ -77,7 +77,7 @@ test('рабочий стол открывает задачу и следующ�
   await page.reload();
   await page.getByRole('button', { name: 'Открыть требования' }).click();
   await expect(page.getByLabel('Проверить защиту от повторного создания заказа')).toBeChecked();
-  await expect(prepare).toHaveAttribute('aria-disabled', 'false');
+  await expect(prepare).toHaveClass(/is-ready/)
   await prepare.click();
 
   await expect(page.getByRole('button', { name: /Правила скидок/ })).toBeEnabled();
@@ -141,7 +141,7 @@ test('чек-лист и кнопка продолжают работать от
     await mobilePage.getByLabel('Проверить защиту от повторного создания заказа').tap();
 
     await expect(mobilePage.getByText('Чек-лист готов. Можно продолжать.')).toBeVisible();
-    await expect(prepare).toHaveAttribute('aria-disabled', 'false');
+    await expect(prepare).toHaveClass(/is-ready/)
     await expect(prepare).toBeEnabled();
     await prepare.tap();
     await expect(mobilePage.getByRole('button', { name: /Правила скидок/ })).toBeEnabled();
