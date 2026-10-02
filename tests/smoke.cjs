@@ -8,6 +8,8 @@ const required = [
   'Проверка настройки NEW10',
   'Правильно ли рассчитана скидка?',
   'DevTools открываем заранее',
+  'MS SQL Server',
+  'Допустимы разные варианты записи запроса',
   'SELECT TOP 10 id, user_id, total, status, order_date',
   'Swagger · Контракт API',
   'Условия воспроизведения совпали',
@@ -35,14 +37,24 @@ if (stepMatches.length < 25) {
 
 console.log(`Smoke OK: методические исправления найдены, экранов ${stepMatches.length + 1}`);
 
+if (!html.includes('доступен только до закрытия вкладки')) {
+  throw new Error('Основной сценарий не предупреждает о несохранённом прогрессе при недоступном localStorage');
+}
+
 const conceptRequired = [
-  'Рабочий стол QA',
+  'Новый интерфейс · этап 1',
   'SP-214',
   'Командный чат',
   'data-tool="devtools"',
   'data-tool="sql"',
   'type="checkbox" name="plan"',
-  'prepare.disabled=!complete',
+  'data-tool="promo"',
+  'data-discount="4"',
+  'qa-first-day-workspace-v1',
+  'qa-first-day-v2-before-workspace',
+  'index.html?resume=1',
+  'id="continueShift"',
+  'aria-live="polite"',
   '@media(max-width:560px)',
   'overflow:hidden;text-overflow:ellipsis'
 ];
@@ -58,3 +70,8 @@ for (const validationMarker of ['validTitle', 'validActual', 'validExpected', '�
   if (!html.includes(validationMarker)) throw new Error(`Нет содержательной проверки баг-репорта: ${validationMarker}`);
 }
 console.log('Report validation smoke OK: бессмысленный текст не проходит только по длине');
+
+for (const sqlMarker of ['query.match(/^select\\s+top', "new Set(['id','user_id','total','status','order_date'])", "every(x=>fields.includes(x))", 'SELECT *']) {
+  if (!html.includes(sqlMarker)) throw new Error(`Нет проверки смысла и безопасности SQL: ${sqlMarker}`);
+}
+console.log('SQL smoke OK: ограничение, таблица, фильтр и обязательные поля проверяются отдельно от форматирования');

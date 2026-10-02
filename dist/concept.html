@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071019">
   <meta name="description" content="Прототип виртуального рабочего стола симулятора Первый день QA">
-  <title>Рабочий стол QA — дизайн-прототип</title>
+  <title>Первый день QA — рабочий стол, этап 1</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071019'/%3E%3Cpath d='M15 18h34v25H15z' fill='none' stroke='%236ee7b7' stroke-width='5'/%3E%3Cpath d='M24 51h16M32 43v8' stroke='%236ee7b7' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
     :root{--bg:#071019;--surface:#0d1924;--surface2:#122231;--line:#25394a;--text:#f2f7fb;--muted:#96a9b9;--mint:#6ee7b7;--blue:#69b9ff;--amber:#f2bd65;--shadow:0 20px 60px rgba(0,0,0,.38)}
@@ -14,28 +14,243 @@
     @media(max-width:560px){.app{grid-template-rows:58px 1fr}.topbar{padding:0 12px;gap:9px}.prototype,.date{display:none}.layout{min-height:calc(100vh - 58px)}.workspace{padding:13px}.workspace-head{align-items:flex-start;margin-bottom:14px}.workspace-head h1{font-size:1.35rem}.workspace-head p{font-size:.78rem}.shift{font-size:.72rem}.shift-progress{width:86px}.desk{gap:12px}.scope{grid-template-columns:1fr}.task-card{padding:17px}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tools{padding:12px}.panel{border-radius:15px}.drawer{inset:58px 0 0}.clock{font-size:.82rem}}
     .check{cursor:pointer}.check input{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0;accent-color:var(--mint)}.check:has(input:checked){background:#112a23;color:#e4fff4;outline:1px solid #34795f}.check-help{min-height:20px;margin:-9px 0 12px;color:var(--amber);font-size:.75rem}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    .identity{display:grid;gap:9px;margin-top:18px}.identity[hidden],#mainAction[hidden],#continueShift[hidden],.dialog-result[hidden]{display:none!important}.identity label{font-size:.82rem;font-weight:750}.identity input{width:100%;border:1px solid #355267;border-radius:10px;padding:12px;background:#09141e;color:var(--text)}.identity input:focus-visible{outline:3px solid rgba(105,185,255,.3);border-color:var(--blue)}.identity-help{min-height:18px;color:var(--amber);font-size:.75rem}dialog{width:min(520px,calc(100% - 24px));max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--line);border-radius:18px;padding:0;background:#0b1722;color:var(--text);box-shadow:var(--shadow)}dialog::backdrop{background:rgba(0,0,0,.68);backdrop-filter:blur(3px)}.dialog-body{padding:20px}.dialog-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}.dialog-head h2{margin:0;font-size:1.05rem}.dialog-close{margin-left:auto;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:transparent;color:var(--muted)}.cart-lines{display:grid;gap:10px;margin:18px 0}.cart-line{display:flex;justify-content:space-between;gap:14px;padding:10px 12px;border-radius:10px;background:#101f2d}.cart-line.total{border:1px solid #355267;font-weight:850}.dialog-actions{display:grid;gap:9px;margin-top:18px}.dialog-actions button{border:1px solid #355267;border-radius:11px;padding:12px;background:#122231;color:var(--text);text-align:left;line-height:1.4}.dialog-actions button:hover,.dialog-actions button:focus-visible{border-color:var(--blue);outline:2px solid rgba(105,185,255,.2)}.dialog-actions button:disabled{opacity:.55;cursor:default}.dialog-result{margin-top:16px;padding:14px;border:1px solid #34795f;border-radius:12px;background:#10281f;color:#d8ffef;line-height:1.5}.dialog-note{margin:12px 0 0;color:var(--muted);font-size:.82rem;line-height:1.5}
   </style>
 </head>
 <body>
   <div class="app">
-    <header class="topbar"><div class="brand"><span class="brand-mark">QA</span>Первый день QA</div><span class="prototype">Дизайн-прототип</span><span class="date">Понедельник · тестовое окружение</span><strong class="clock" id="clock">09:05</strong></header>
+    <header class="topbar"><div class="brand"><span class="brand-mark">QA</span>Первый день QA</div><span class="prototype">Новый интерфейс · этап 1</span><span class="date">Понедельник · тестовое окружение</span><strong class="clock" id="clock">09:05</strong></header>
     <div class="layout">
-      <aside class="sidebar"><div class="profile"><div class="avatar" id="avatar">В</div><div><b id="profileName">Виктор</b><span>Junior QA · День 1</span></div></div><nav class="nav" aria-label="Рабочие разделы"><button class="active">Рабочий стол <span>●</span></button><button>Мои задачи <span>1</span></button><button>Команда</button><button>Результаты</button></nav><a class="back" href="index.html">← Вернуться к текущей версии</a></aside>
+      <aside class="sidebar"><div class="profile"><div class="avatar" id="avatar">QA</div><div><b id="profileName">Новый QA</b><span>Junior QA · День 1</span></div></div><nav class="nav" aria-label="Рабочие разделы"><button class="active">Рабочий стол <span>●</span></button><button>Мои задачи <span>1</span></button><button>Команда</button><button>Результаты</button></nav><a class="back" href="index.html">← Продолжить День 1 карточками</a></aside>
       <main class="workspace">
-        <div class="workspace-head"><div><h1 id="greeting">Доброе утро, Виктор</h1><p id="subtitle">Сборка готова. Начни со входящей задачи.</p></div><div class="shift"><b>Смена началась</b><span>09:00–18:00</span><div class="shift-progress"><span id="shiftBar"></span></div></div></div>
+        <div class="workspace-head"><div><h1 id="greeting">Добро пожаловать в команду</h1><p id="subtitle">Сборка готова. Начни со входящей задачи.</p></div><div class="shift"><b>Смена началась</b><span>09:00–18:00</span><div class="shift-progress"><span id="shiftBar"></span></div></div></div>
         <div class="desk">
-          <section class="panel" aria-labelledby="taskTitle"><div class="panel-head"><span class="status-dot"></span><h2>Текущая задача</h2><span class="meta" id="taskState">Новая</span></div><div class="task-card"><div class="task-top"><span class="ticket">SP-214</span><span class="priority">релиз сегодня</span></div><h2 id="taskTitle">Проверить промокод и оформление заказа</h2><p>Сборка корзины ShopPoint готова на тестовом окружении. В скоупе — NEW10, расчёт корзины и создание заказа.</p><div class="scope"><div><b>Окружение</b><span>test-02</span></div><div><b>Сборка</b><span>2026.09.28-rc1</span></div><div><b>Дедлайн</b><span>после обеда</span></div></div><button class="primary" id="mainAction">Принять задачу</button></div></section>
+          <section class="panel" aria-labelledby="taskTitle"><div class="panel-head"><span class="status-dot"></span><h2>Текущая задача</h2><span class="meta" id="taskState">Новая</span></div><div class="task-card"><div class="task-top"><span class="ticket">SP-214</span><span class="priority">релиз сегодня</span></div><h2 id="taskTitle">Проверить промокод и оформление заказа</h2><p>Сборка корзины ShopPoint готова на тестовом окружении. В скоупе — NEW10, расчёт корзины и создание заказа.</p><div class="scope"><div><b>Окружение</b><span>test-02</span></div><div><b>Сборка</b><span>2026.09.28-rc1</span></div><div><b>Дедлайн</b><span>после обеда</span></div></div><form class="identity" id="identity"><label for="workerName">Как к тебе обращаться?</label><input id="workerName" maxlength="24" autocomplete="given-name" placeholder="Например, Виктор"><div class="identity-help" id="identityHelp" aria-live="polite"></div><button class="primary" id="saveName" type="submit">Сохранить имя и начать смену</button></form><button class="primary" id="mainAction" hidden>Принять задачу</button></div></section>
           <section class="panel" aria-labelledby="chatTitle"><div class="panel-head"><span class="status-dot"></span><h2 id="chatTitle">Командный чат</h2><span class="meta">#release-cart</span></div><div class="feed" id="feed"><div class="message"><div class="mini-avatar">АН</div><div><strong>Анна · QA-наставник</strong><time>09:05</time><p>Сборка готова. Открой SP-214 и посмотри скоуп.</p></div></div><div class="message"><div class="mini-avatar">ИР</div><div><strong>Илья · разработчик</strong><time>09:03</time><p>RC1 выложен на test-02. Если что — я на связи.</p></div></div></div></section>
-          <section class="panel tools" aria-labelledby="toolsTitle"><div class="tools-title"><h2 id="toolsTitle">Рабочие инструменты</h2><span id="toolHint">Откроются по ходу задачи</span></div><div class="tool-grid"><button class="tool ready" data-tool="requirements"><span class="tool-icon">REQ</span><b>Требования</b><small>SP-214</small></button><button class="tool" data-tool="shop" disabled><span class="lock">закрыто</span><span class="tool-icon">WEB</span><b>ShopPoint</b><small>витрина</small></button><button class="tool" data-tool="devtools" disabled><span class="lock">закрыто</span><span class="tool-icon">F12</span><b>DevTools</b><small>Network</small></button><button class="tool" data-tool="api" disabled><span class="lock">закрыто</span><span class="tool-icon">API</span><b>Swagger</b><small>контракт</small></button><button class="tool" data-tool="sql" disabled><span class="lock">закрыто</span><span class="tool-icon">SQL</span><b>База данных</b><small>orders</small></button><button class="tool" data-tool="jira" disabled><span class="lock">закрыто</span><span class="tool-icon">BUG</span><b>Jira</b><small>дефекты</small></button></div></section>
+          <section class="panel tools" aria-labelledby="toolsTitle"><div class="tools-title"><h2 id="toolsTitle">Рабочие инструменты</h2><span id="toolHint">Откроются по ходу задачи</span></div><div class="tool-grid"><button class="tool ready" data-tool="requirements"><span class="tool-icon">REQ</span><b>Требования</b><small>SP-214</small></button><button class="tool" data-tool="promo" disabled><span class="lock">закрыто</span><span class="tool-icon">CFG</span><b>Правила скидок</b><small>promo_rules</small></button><button class="tool" data-tool="shop" disabled><span class="lock">закрыто</span><span class="tool-icon">WEB</span><b>ShopPoint</b><small>витрина</small></button><button class="tool" data-tool="devtools" disabled><span class="lock">закрыто</span><span class="tool-icon">F12</span><b>DevTools</b><small>Network</small></button><button class="tool" data-tool="api" disabled><span class="lock">закрыто</span><span class="tool-icon">API</span><b>Swagger</b><small>контракт</small></button><button class="tool" data-tool="sql" disabled><span class="lock">закрыто</span><span class="tool-icon">SQL</span><b>База данных</b><small>orders</small></button><button class="tool" data-tool="jira" disabled><span class="lock">закрыто</span><span class="tool-icon">BUG</span><b>Jira</b><small>дефекты</small></button></div></section>
         </div>
       </main>
       <nav class="mobile-nav" aria-label="Мобильная навигация"><button class="active">Рабочий стол</button><button>Задачи · 1</button><button>Команда</button></nav>
     </div>
   </div>
-  <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-top"><span class="ticket">SP-214 · Требования</span><button id="closeDrawer" aria-label="Закрыть">Закрыть</button></div><h2>Промокод NEW10</h2><p>Новый клиент получает скидку 10% на товары. На доставку скидка не распространяется.</p><div class="req"><b>Открытый вопрос</b>Кто именно считается новым клиентом? Без этого правило нельзя однозначно проверить.</div><div class="checklist"><label class="check"><input type="checkbox" name="plan" value="new-customer"><span>Уточнить критерий нового клиента</span></label><label class="check"><input type="checkbox" name="plan" value="promo-config"><span>Проверить настройку NEW10</span></label><label class="check"><input type="checkbox" name="plan" value="cart-total"><span>Сверить расчёт корзины</span></label></div><div class="check-help" id="checkHelp">Отметь все пункты короткого чек-листа.</div><button class="primary" id="prepare" disabled>Зафиксировать вопрос и подготовить проверку</button></aside>
+  <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-top"><span class="ticket">SP-214 · Требования</span><button id="closeDrawer" aria-label="Закрыть">Закрыть</button></div><h2>Промокод NEW10</h2><p>Новый клиент получает скидку 10% на товары. На доставку скидка не распространяется.</p><div class="req"><b>Открытый вопрос</b>Кто именно считается новым клиентом? Без этого правила нельзя однозначно проверить доступность скидки.</div><div class="checklist"><label class="check"><input type="checkbox" name="plan" value="new-customer"><span>Уточнить критерий нового клиента</span></label><label class="check"><input type="checkbox" name="plan" value="promo-config"><span>Проверить настройку NEW10</span></label><label class="check"><input type="checkbox" name="plan" value="cart-total"><span>Сверить расчёт корзины</span></label><label class="check"><input type="checkbox" name="plan" value="repeat-order"><span>Проверить защиту от повторного создания заказа</span></label></div><div class="check-help" id="checkHelp" aria-live="polite">Отметь все пункты короткого чек-листа.</div><button class="primary" id="prepare" disabled>Зафиксировать правило и план проверки</button></aside>
+  <dialog id="promoDialog" aria-labelledby="promoTitle"><div class="dialog-body"><div class="dialog-head"><h2 id="promoTitle">promo_rules · тестовое окружение</h2><button class="dialog-close" data-close-dialog="promoDialog">Закрыть</button></div><p>Сверь бизнес-правило с настройкой. Это помогает понять, где искать причину расхождения.</p><div class="req"><b>NEW10</b>percent: 10<br>scope: products<br>exclude_delivery: true<br>new_customer: no_completed_orders</div><p class="dialog-note">В этой учебной смене новый клиент — пользователь без завершённых заказов. Настройка согласуется с правилом.</p><div class="dialog-actions"><button id="confirmPromo" class="primary">Настройка совпадает · перейти к корзине</button></div></div></dialog>
+  <dialog id="shopDialog" aria-labelledby="shopTitle"><div class="dialog-body"><div class="dialog-head"><h2 id="shopTitle">ShopPoint · корзина C-7781</h2><button class="dialog-close" data-close-dialog="shopDialog">Закрыть</button></div><p>Сопоставь экран корзины с требованием и настройкой NEW10.</p><div class="cart-lines"><div class="cart-line"><span>Товар</span><b>100 BYN</b></div><div class="cart-line"><span>Доставка</span><b>20 BYN</b></div><div class="cart-line"><span>Скидка NEW10</span><b>−12 BYN</b></div><div class="cart-line total"><span>Показанный итог</span><b>108 BYN</b></div></div><h3>Какой итог должен быть по правилу?</h3><div class="dialog-actions" id="discountChoices"><button data-discount="4">110 BYN: 10% от товара, доставка без скидки</button><button data-discount="-2">108 BYN: расчёт на экране верен</button></div><div class="dialog-result" id="discountResult" hidden aria-live="polite"></div><p class="dialog-note">После ответа ты продолжишь в основном сценарии с этапа проверки оформления заказа.</p><div class="dialog-actions"><button id="continueShift" class="primary" hidden>Продолжить смену · проверить оформление</button></div></div></dialog>
   <div class="notice" id="notice" role="status"></div>
   <script>
-    (()=>{const saved=(()=>{try{return JSON.parse(localStorage.getItem('qa-first-day-v2'))||{}}catch(e){return{}}})();const person=(saved.name||'Виктор').trim(),first=person.charAt(0).toUpperCase();document.getElementById('profileName').textContent=person;document.getElementById('avatar').textContent=first;document.getElementById('greeting').textContent=`Доброе утро, ${person}`;const action=document.getElementById('mainAction'),drawer=document.getElementById('drawer'),notice=document.getElementById('notice'),prepare=document.getElementById('prepare'),checks=[...document.querySelectorAll('input[name="plan"]')],checkHelp=document.getElementById('checkHelp');let phase=0;const toast=t=>{notice.textContent=t;notice.classList.add('show');setTimeout(()=>notice.classList.remove('show'),2200)};const openDrawer=()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false')};const updateChecklist=()=>{const complete=checks.every(item=>item.checked);prepare.disabled=!complete;checkHelp.textContent=complete?'Чек-лист готов. Можно продолжать.':'Отметь все пункты короткого чек-листа.'};checks.forEach(item=>item.addEventListener('change',updateChecklist));document.querySelector('[data-tool="requirements"]').onclick=openDrawer;document.getElementById('closeDrawer').onclick=()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')};action.onclick=()=>{phase=1;document.getElementById('taskState').textContent='В работе';document.getElementById('shiftBar').style.width='18%';document.getElementById('subtitle').textContent='Задача принята. Сначала изучи требования.';action.textContent='Открыть требования';action.onclick=openDrawer;toast('SP-214 переведена в работу')};prepare.onclick=()=>{if(prepare.disabled)return;if(phase<2){phase=2;const shop=document.querySelector('[data-tool="shop"]');shop.disabled=false;shop.classList.add('ready');shop.querySelector('.lock').remove();document.getElementById('shiftBar').style.width='24%';document.getElementById('taskState').textContent='Исследование';document.getElementById('subtitle').textContent='Вопрос зафиксирован. Витрина ShopPoint доступна для исследования.';document.getElementById('toolHint').textContent='Открыт следующий рабочий инструмент';document.getElementById('feed').insertAdjacentHTML('afterbegin','<div class="message"><div class="mini-avatar">МП</div><div><strong>Марина · продакт</strong><time>09:14</time><p>Новый клиент — без завершённых заказов. Можно проверять.</p></div></div>');shop.onclick=()=>toast('В полном сценарии здесь откроется витрина ShopPoint');toast('ShopPoint открыт для проверки')}drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')};setInterval(()=>{const d=new Date(),h=String(d.getHours()).padStart(2,'0'),m=String(d.getMinutes()).padStart(2,'0');document.getElementById('clock').textContent=`${h}:${m}`},30000)})();
+    (() => {
+      const MAIN_KEY = 'qa-first-day-v2';
+      const WORKSPACE_KEY = 'qa-first-day-workspace-v1';
+      const read = key => {
+        try {
+          const value = JSON.parse(localStorage.getItem(key));
+          return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+        } catch (error) {
+          return {};
+        }
+      };
+      const mainState = read(MAIN_KEY);
+      const savedWorkspace = read(WORKSPACE_KEY);
+      const validName = value => typeof value === 'string' && /^[\p{L}][\p{L}\s'-]{1,23}$/u.test(value.trim());
+      const workspace = {
+        name: validName(mainState.name) ? mainState.name.trim() : validName(savedWorkspace.name) ? savedWorkspace.name.trim() : '',
+        phase: Number.isInteger(savedWorkspace.phase) ? Math.max(0, Math.min(savedWorkspace.phase, 4)) : 0,
+        checks: Array.isArray(savedWorkspace.checks) ? savedWorkspace.checks : [],
+        discount: savedWorkspace.discount === 4 || savedWorkspace.discount === -2 ? savedWorkspace.discount : null
+      };
+      const byId = id => document.getElementById(id);
+      const action = byId('mainAction');
+      const drawer = byId('drawer');
+      const notice = byId('notice');
+      const prepare = byId('prepare');
+      const checks = [...document.querySelectorAll('input[name="plan"]')];
+      const checkHelp = byId('checkHelp');
+      const promoDialog = byId('promoDialog');
+      const shopDialog = byId('shopDialog');
+      const toast = message => {
+        notice.textContent = message;
+        notice.classList.add('show');
+        setTimeout(() => notice.classList.remove('show'), 2400);
+      };
+      const saveWorkspace = () => {
+        try {
+          localStorage.setItem(WORKSPACE_KEY, JSON.stringify(workspace));
+          return true;
+        } catch (error) {
+          toast('Не удалось сохранить прогресс. Проверь настройки хранения браузера.');
+          return false;
+        }
+      };
+      const openDrawer = () => {
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        byId('closeDrawer').focus();
+      };
+      const closeDrawer = () => {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.querySelector('[data-tool="requirements"]').focus();
+      };
+      const unlockTool = (name, handler) => {
+        const tool = document.querySelector(`[data-tool="${name}"]`);
+        if (!tool) return;
+        tool.disabled = false;
+        tool.classList.add('ready');
+        tool.querySelector('.lock')?.remove();
+        if (handler) tool.onclick = handler;
+      };
+      const addProductAnswer = () => {
+        if (byId('productAnswer')) return;
+        byId('feed').insertAdjacentHTML('afterbegin', '<div class="message" id="productAnswer"><div class="mini-avatar">МП</div><div><strong>Марина · продакт</strong><time>09:14</time><p>Новый клиент — пользователь без завершённых заказов. Можно проверять.</p></div></div>');
+      };
+      const setShift = (label, subtitle, width) => {
+        byId('taskState').textContent = label;
+        byId('subtitle').textContent = subtitle;
+        byId('shiftBar').style.width = width;
+      };
+      const showDiscountResult = () => {
+        if (workspace.discount === null) return;
+        const correct = workspace.discount === 4;
+        const result = byId('discountResult');
+        result.innerHTML = correct
+          ? '<strong>Расчёт не сходится с правилом.</strong> 10% от товара — 10 BYN. Ожидаемый итог: 100 − 10 + 20 = 110 BYN. На витрине показано 108 BYN, значит скидка затронула доставку.'
+          : '<strong>Проверь источник истины.</strong> Настройка исключает доставку из скидки. Ожидаемый итог — 110 BYN, а 108 BYN на экране показывает расхождение в расчёте.';
+        result.hidden = false;
+        document.querySelectorAll('[data-discount]').forEach(button => { button.disabled = true; });
+        byId('continueShift').hidden = false;
+      };
+      const syncWorkspace = () => {
+        const hasName = Boolean(workspace.name);
+        byId('identity').hidden = hasName;
+        action.hidden = !hasName;
+        if (hasName) {
+          const first = Array.from(workspace.name)[0].toLocaleUpperCase('ru-RU');
+          byId('profileName').textContent = workspace.name;
+          byId('avatar').textContent = first;
+          byId('greeting').textContent = `Доброе утро, ${workspace.name}`;
+        } else {
+          byId('profileName').textContent = 'Новый QA';
+          byId('avatar').textContent = 'QA';
+          byId('greeting').textContent = 'Добро пожаловать в команду';
+        }
+        action.textContent = workspace.phase ? 'Открыть требования' : 'Принять задачу';
+        checks.forEach(item => { item.checked = workspace.checks.includes(item.value); });
+        prepare.disabled = workspace.phase !== 1 || !checks.every(item => item.checked);
+        checkHelp.textContent = workspace.phase >= 2
+          ? 'Правило уточнено. Команда подтвердила критерий нового клиента.'
+          : checks.every(item => item.checked) ? 'Чек-лист готов. Можно продолжать.' : 'Отметь все пункты короткого чек-листа.';
+        if (workspace.phase === 1) setShift('В работе', 'Задача принята. Открой требования и подготовь проверки.', '18%');
+        if (workspace.phase >= 2) {
+          addProductAnswer();
+          unlockTool('promo', () => promoDialog.showModal());
+          setShift('План готов', 'Правило уточнено. Теперь проверь настройку NEW10.', '30%');
+          byId('toolHint').textContent = 'Сначала открой справочник правил скидок';
+        }
+        if (workspace.phase >= 3) {
+          unlockTool('shop', () => shopDialog.showModal());
+          setShift('Исследование', 'Настройка совпадает с требованием. Сверь расчёт в корзине.', '38%');
+          byId('toolHint').textContent = 'Настройка проверена · открой ShopPoint';
+        }
+        if (workspace.phase >= 4) {
+          setShift('Расхождение найдено', 'Зафиксируй результат и продолжи проверку оформления.', '48%');
+          showDiscountResult();
+        }
+      };
+
+      byId('identity').addEventListener('submit', event => {
+        event.preventDefault();
+        const input = byId('workerName');
+        const name = input.value.trim().replace(/\s+/g, ' ');
+        if (!validName(name)) {
+          byId('identityHelp').textContent = 'Введи имя от двух до 24 символов: буквы, пробел, дефис или апостроф.';
+          input.focus();
+          return;
+        }
+        workspace.name = name;
+        saveWorkspace();
+        syncWorkspace();
+        toast('Имя сохранено на этом устройстве');
+      });
+      action.onclick = () => {
+        if (workspace.phase === 0) {
+          workspace.phase = 1;
+          saveWorkspace();
+          setShift('В работе', 'Задача принята. Открой требования и подготовь проверки.', '18%');
+          toast('SP-214 переведена в работу');
+          action.textContent = 'Открыть требования';
+          return;
+        }
+        openDrawer();
+      };
+      document.querySelector('[data-tool="requirements"]').onclick = openDrawer;
+      byId('closeDrawer').onclick = closeDrawer;
+      checks.forEach(item => item.addEventListener('change', () => {
+        workspace.checks = checks.filter(check => check.checked).map(check => check.value);
+        saveWorkspace();
+        syncWorkspace();
+      }));
+      prepare.onclick = () => {
+        if (prepare.disabled || workspace.phase >= 2) return;
+        workspace.phase = 2;
+        saveWorkspace();
+        syncWorkspace();
+        closeDrawer();
+        toast('Правило уточнено · справочник доступен');
+      };
+      byId('confirmPromo').onclick = () => {
+        if (workspace.phase < 3) {
+          workspace.phase = 3;
+          saveWorkspace();
+          syncWorkspace();
+        }
+        promoDialog.close();
+        toast('Настройка NEW10 согласуется с требованием');
+      };
+      document.querySelectorAll('[data-close-dialog]').forEach(button => {
+        button.onclick = () => byId(button.dataset.closeDialog).close();
+      });
+      document.querySelectorAll('[data-discount]').forEach(button => {
+        button.onclick = () => {
+          if (workspace.phase >= 4) return;
+          workspace.discount = Number(button.dataset.discount);
+          workspace.phase = 4;
+          saveWorkspace();
+          syncWorkspace();
+        };
+      });
+      byId('continueShift').onclick = () => {
+        const previous = read(MAIN_KEY);
+        try {
+          if (previous.started && Number(previous.step) > 0) {
+            localStorage.setItem('qa-first-day-v2-before-workspace', JSON.stringify(previous));
+          }
+          const state = {
+            step: 11,
+            name: workspace.name,
+            score: 0,
+            decisions: {},
+            bugs: [],
+            hints: 0,
+            report: { title: '', actual: '', expected: '' },
+            started: true
+          };
+          for (const [id, value] of [['requirement', 3], ['priority', 3], ['promoSource', 1], ['discount', workspace.discount]]) {
+            state.decisions[id] = value;
+            state.score += value;
+          }
+          localStorage.setItem(MAIN_KEY, JSON.stringify(state));
+          localStorage.removeItem(WORKSPACE_KEY);
+          location.href = 'index.html?resume=1';
+        } catch (error) {
+          toast('Не удалось передать прогресс. Смена пока сохранена на этом устройстве.');
+        }
+      };
+      syncWorkspace();
+      setInterval(() => {
+        const now = new Date();
+        byId('clock').textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+      }, 30000);
+    })();
   </script>
 </body>
 </html>
