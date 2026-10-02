@@ -112,6 +112,37 @@ test('рабочий стол открывает задачу и следующ�
   expect(hasHorizontalScroll).toBe(false);
 });
 
+test('чек-лист и кнопка продолжают работать от касаний на мобильном устройстве', async ({ browser }) => {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 2,
+    isMobile: true,
+    hasTouch: true
+  });
+  const mobilePage = await context.newPage();
+
+  try {
+    await mobilePage.goto('/concept.html');
+    await mobilePage.getByLabel('Как к тебе обращаться?').fill('Тестировщик');
+    await mobilePage.getByRole('button', { name: 'Сохранить имя и начать смену' }).tap();
+    await mobilePage.getByRole('button', { name: 'Принять задачу' }).tap();
+    await mobilePage.getByRole('button', { name: 'Открыть требования' }).tap();
+
+    await mobilePage.getByLabel('Уточнить критерий нового клиента').tap();
+    await mobilePage.getByLabel('Проверить настройку NEW10').tap();
+    await mobilePage.getByLabel('Сверить расчёт корзины').tap();
+    await mobilePage.getByLabel('Проверить защиту от повторного создания заказа').tap();
+
+    await expect(mobilePage.getByText('Чек-лист готов. Можно продолжать.')).toBeVisible();
+    const prepare = mobilePage.getByRole('button', { name: /Зафиксировать правило/ });
+    await expect(prepare).toBeEnabled();
+    await prepare.tap();
+    await expect(mobilePage.getByRole('button', { name: /Правила скидок/ })).toBeEnabled();
+  } finally {
+    await context.close();
+  }
+});
+
 test('SQL-упражнение отклоняет SELECT * и принимает эквивалентный ограниченный запрос', async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('qa-first-day-v2', JSON.stringify({
