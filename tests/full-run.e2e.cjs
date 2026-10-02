@@ -176,7 +176,7 @@ test('неверная оценка корзины получает объясн
   await page.getByRole('button', { name: /Продолжить смену/ }).click();
 
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('qa-first-day-v2')));
-  expect(saved.step).toBe(11);
+  expect(saved.step).toBe(12);
   expect(saved.decisions.discount).toBe(-2);
   expect(saved.score).toBe(5);
 });
