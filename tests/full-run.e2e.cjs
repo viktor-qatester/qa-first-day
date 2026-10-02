@@ -67,7 +67,9 @@ test('рабочий стол открывает задачу и следующ�
   await expect(page.getByText('В работе', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Открыть требования' }).click();
   await expect(page.getByRole('heading', { name: 'Промокод NEW10' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /Зафиксировать правило/ })).toBeDisabled();
+  const prepare = page.getByRole('button', { name: /Зафиксировать правило/ });
+  await expect(prepare).toHaveAttribute('aria-disabled', 'true');
+  await expect(prepare).toBeEnabled();
   await page.getByLabel('Уточнить критерий нового клиента').check();
   await page.getByLabel('Проверить настройку NEW10').check();
   await page.getByLabel('Сверить расчёт корзины').check();
@@ -75,8 +77,8 @@ test('рабочий стол открывает задачу и следующ�
   await page.reload();
   await page.getByRole('button', { name: 'Открыть требования' }).click();
   await expect(page.getByLabel('Проверить защиту от повторного создания заказа')).toBeChecked();
-  await expect(page.getByRole('button', { name: /Зафиксировать правило/ })).toBeEnabled();
-  await page.getByRole('button', { name: /Зафиксировать правило/ }).click();
+  await expect(prepare).toHaveAttribute('aria-disabled', 'false');
+  await prepare.click();
 
   await expect(page.getByRole('button', { name: /Правила скидок/ })).toBeEnabled();
   await expect(page.getByRole('button', { name: /ShopPoint/ })).toBeDisabled();
@@ -128,13 +130,18 @@ test('чек-лист и кнопка продолжают работать от
     await mobilePage.getByRole('button', { name: 'Принять задачу' }).tap();
     await mobilePage.getByRole('button', { name: 'Открыть требования' }).tap();
 
+    const prepare = mobilePage.getByRole('button', { name: /Зафиксировать правило/ });
+    await prepare.tap();
+    await expect(mobilePage.getByText('Чтобы продолжить, отметь все четыре пункта чек-листа.')).toBeVisible();
+    await expect(mobilePage.getByRole('button', { name: /Правила скидок/ })).toBeDisabled();
+
     await mobilePage.getByLabel('Уточнить критерий нового клиента').tap();
     await mobilePage.getByLabel('Проверить настройку NEW10').tap();
     await mobilePage.getByLabel('Сверить расчёт корзины').tap();
     await mobilePage.getByLabel('Проверить защиту от повторного создания заказа').tap();
 
     await expect(mobilePage.getByText('Чек-лист готов. Можно продолжать.')).toBeVisible();
-    const prepare = mobilePage.getByRole('button', { name: /Зафиксировать правило/ });
+    await expect(prepare).toHaveAttribute('aria-disabled', 'false');
     await expect(prepare).toBeEnabled();
     await prepare.tap();
     await expect(mobilePage.getByRole('button', { name: /Правила скидок/ })).toBeEnabled();
